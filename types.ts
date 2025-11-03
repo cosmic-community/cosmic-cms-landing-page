@@ -69,6 +69,44 @@ export interface TeamMember extends CosmicObject {
   };
 }
 
+// User object type
+export interface User extends CosmicObject {
+  type: 'users';
+  metadata: {
+    email: string;
+    password_hash: string;
+    name: string;
+    profile_photo?: {
+      url: string;
+      imgix_url: string;
+    };
+    bookmarked_posts?: string[]; // Array of post IDs
+    reading_history?: string[]; // Array of post IDs
+    newsletter_subscribed?: boolean;
+    email_verified?: boolean;
+    verification_token?: string;
+    reset_token?: string;
+    reset_token_expiry?: string;
+  };
+}
+
+// Blog Post object type (for bookmark feature)
+export interface BlogPost extends CosmicObject {
+  type: 'posts';
+  metadata: {
+    title: string;
+    excerpt?: string;
+    content?: string;
+    featured_image?: {
+      url: string;
+      imgix_url: string;
+    };
+    author?: string;
+    published_date?: string;
+    category?: string;
+  };
+}
+
 // API response type
 export interface CosmicResponse<T> {
   objects: T[];
@@ -95,4 +133,14 @@ export function isTestimonial(obj: CosmicObject): obj is Testimonial {
 // Type guard for team members
 export function isTeamMember(obj: CosmicObject): obj is TeamMember {
   return obj.type === 'team-members';
+}
+
+// Type guard for users
+export function isUser(obj: CosmicObject): obj is User {
+  return obj.type === 'users';
+}
+
+// Type guard for blog posts
+export function isBlogPost(obj: CosmicObject): obj is BlogPost {
+  return obj.type === 'posts';
 }
