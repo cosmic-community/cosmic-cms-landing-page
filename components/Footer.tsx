@@ -35,6 +35,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/metrics" className="text-gray-400 hover:text-white transition-colors">
+                  Metrics
+                </Link>
+              </li>
+              <li>
                 <a href="https://www.cosmicjs.com/docs" className="text-gray-400 hover:text-white transition-colors">
                   Documentation
                 </a>
@@ -54,6 +59,11 @@ export default function Footer() {
                 <a href="https://www.cosmicjs.com" className="text-gray-400 hover:text-white transition-colors">
                   Blog
                 </a>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+                  Privacy
+                </Link>
               </li>
               <li>
                 <a href="https://www.cosmicjs.com" className="text-gray-400 hover:text-white transition-colors">
@@ -85,8 +95,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Cosmic. All rights reserved.</p>
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+            <p>&copy; {new Date().getFullYear()} Cosmic. All rights reserved.</p>
+            <div className="mt-4 md:mt-0">
+              <span className="inline-flex items-center">
+                <span className="mr-2">Status:</span>
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                  <span className="text-green-400 font-medium">All Systems Operational</span>
+                </span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

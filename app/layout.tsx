@@ -3,6 +3,9 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CosmicBadge from '@/components/CosmicBadge'
+import CookieConsent from '@/components/CookieConsent'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import PerformanceMonitor from '@/components/PerformanceMonitor'
 
 export const metadata: Metadata = {
   title: 'Cosmic CMS - Build Content-Driven Apps at Lightning Speed',
@@ -31,12 +34,15 @@ export default function RootLayout({
         <script src="/dashboard-console-capture.js"></script>
       </head>
       <body>
+        <GoogleAnalytics />
+        <PerformanceMonitor />
         <Header />
         <main className="min-h-screen">
           {children}
         </main>
         <Footer />
         <CosmicBadge bucketSlug={bucketSlug} />
+        <CookieConsent />
       </body>
     </html>
   )
