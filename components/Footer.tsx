@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import NewsletterForm from './NewsletterForm'
 
 export default function Footer() {
   return (
@@ -16,9 +17,15 @@ export default function Footer() {
               />
               <span className="text-xl font-bold">Cosmic</span>
             </div>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-6">
               The modern headless CMS for building content-driven applications at lightning speed.
             </p>
+            
+            {/* Newsletter signup in footer */}
+            <div className="mt-6">
+              <h4 className="font-semibold mb-3 text-sm">Stay Updated</h4>
+              <NewsletterForm source="footer" compact={true} />
+            </div>
           </div>
 
           <div>

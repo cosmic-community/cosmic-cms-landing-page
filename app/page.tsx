@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
 import Pricing from '@/components/Pricing'
+import NewsletterSection from '@/components/NewsletterSection'
 import Testimonials from '@/components/Testimonials'
 import { getFeatures, getPricingPlans, getTestimonials } from '@/lib/cosmic'
 
@@ -18,6 +19,7 @@ export default async function Home() {
       <Hero />
       <Features features={features} />
       <Pricing plans={plans} preview />
+      <NewsletterSection />
       <Testimonials testimonials={testimonials} />
     </>
   )

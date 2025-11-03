@@ -3,6 +3,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CosmicBadge from '@/components/CosmicBadge'
+import ExitIntentModal from '@/components/ExitIntentModal'
 
 export const metadata: Metadata = {
   title: 'Cosmic CMS - Build Content-Driven Apps at Lightning Speed',
@@ -37,6 +38,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <CosmicBadge bucketSlug={bucketSlug} />
+        <ExitIntentModal />
       </body>
     </html>
   )

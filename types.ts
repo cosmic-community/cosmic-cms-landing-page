@@ -69,12 +69,33 @@ export interface TeamMember extends CosmicObject {
   };
 }
 
+// Newsletter Subscriber object type
+export interface Subscriber extends CosmicObject {
+  type: 'subscribers';
+  metadata: {
+    email: string;
+    subscribed_at: string;
+    status: string;
+    source?: string;
+  };
+}
+
 // API response type
 export interface CosmicResponse<T> {
   objects: T[];
   total: number;
   limit: number;
   skip?: number;
+}
+
+// Newsletter subscription response
+export interface SubscriptionResponse {
+  success: boolean;
+  message: string;
+  data?: {
+    email: string;
+    subscriber_id?: string;
+  };
 }
 
 // Type guard for features
@@ -95,4 +116,9 @@ export function isTestimonial(obj: CosmicObject): obj is Testimonial {
 // Type guard for team members
 export function isTeamMember(obj: CosmicObject): obj is TeamMember {
   return obj.type === 'team-members';
+}
+
+// Type guard for subscribers
+export function isSubscriber(obj: CosmicObject): obj is Subscriber {
+  return obj.type === 'subscribers';
 }
