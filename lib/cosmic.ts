@@ -1,4 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk'
+import type { Feature, PricingPlan, Testimonial, TeamMember, CosmicObject } from '@/types'
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -13,14 +14,14 @@ function hasStatus(error: unknown): error is { status: number } {
 }
 
 // Fetch all features
-export async function getFeatures() {
+export async function getFeatures(): Promise<Feature[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'features' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    return (response.objects as Feature[]).sort((a: Feature, b: Feature) => {
       const orderA = a.metadata?.order || 0;
       const orderB = b.metadata?.order || 0;
       return orderA - orderB;
@@ -34,14 +35,14 @@ export async function getFeatures() {
 }
 
 // Fetch all pricing plans
-export async function getPricingPlans() {
+export async function getPricingPlans(): Promise<PricingPlan[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'pricing-plans' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    return (response.objects as PricingPlan[]).sort((a: PricingPlan, b: PricingPlan) => {
       const orderA = a.metadata?.order || 0;
       const orderB = b.metadata?.order || 0;
       return orderA - orderB;
@@ -55,14 +56,14 @@ export async function getPricingPlans() {
 }
 
 // Fetch all testimonials
-export async function getTestimonials() {
+export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'testimonials' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    return (response.objects as Testimonial[]).sort((a: Testimonial, b: Testimonial) => {
       const orderA = a.metadata?.order || 0;
       const orderB = b.metadata?.order || 0;
       return orderA - orderB;
@@ -76,14 +77,14 @@ export async function getTestimonials() {
 }
 
 // Fetch all team members
-export async function getTeamMembers() {
+export async function getTeamMembers(): Promise<TeamMember[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'team-members' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects;
+    return response.objects as TeamMember[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
