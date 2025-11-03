@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Twitter, Linkedin, Facebook } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -16,9 +17,39 @@ export default function Footer() {
               />
               <span className="text-xl font-bold">Cosmic</span>
             </div>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-4">
               The modern headless CMS for building content-driven applications at lightning speed.
             </p>
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://twitter.com/cosmicjs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on X (Twitter)"
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/cosmicjs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/cosmicjs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           <div>
