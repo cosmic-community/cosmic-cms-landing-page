@@ -13,6 +13,7 @@ export async function GET() {
   try {
     const session = await getServerSession(authOptions)
     
+    // Changed: Added explicit check for session.user.id
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: 'Unauthorized' },
@@ -50,6 +51,7 @@ export async function PATCH(request: Request) {
   try {
     const session = await getServerSession(authOptions)
     
+    // Changed: Added explicit check for session.user.id
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: 'Unauthorized' },
@@ -62,6 +64,14 @@ export async function PATCH(request: Request) {
 
     const updatedUser = await updateUser(session.user.id, validatedData)
 
+    // Changed: Added null check for updatedUser
+    if (!updatedUser) {
+      return NextResponse.json(
+        { error: 'Failed to update user' },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json({
       message: 'Profile updated successfully',
       user: {
@@ -73,8 +83,9 @@ export async function PATCH(request: Request) {
     })
   } catch (error) {
     if (error instanceof z.ZodError) {
+      // Changed: Added optional chaining for error array access
       return NextResponse.json(
-        { error: error.errors[0].message },
+        { error: error.errors[0]?.message || 'Validation error' },
         { status: 400 }
       )
     }

@@ -7,6 +7,7 @@ export async function GET() {
   try {
     const session = await getServerSession(authOptions)
     
+    // Changed: Added explicit check for session.user.id
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: 'Unauthorized' },
@@ -40,6 +41,7 @@ export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions)
     
+    // Changed: Added explicit check for session.user.id
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: 'Unauthorized' },
@@ -92,6 +94,7 @@ export async function DELETE(request: Request) {
   try {
     const session = await getServerSession(authOptions)
     
+    // Changed: Added explicit check for session.user.id
     if (!session?.user?.id) {
       return NextResponse.json(
         { error: 'Unauthorized' },

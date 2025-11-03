@@ -1,5 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk'
-import { User, BlogPost } from '@/types'
+import { User, BlogPost, Feature, PricingPlan, Testimonial, TeamMember } from '@/types'
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -14,18 +14,19 @@ function hasStatus(error: unknown): error is { status: number } {
 }
 
 // Fetch all features
-export async function getFeatures() {
+export async function getFeatures(): Promise<Feature[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'features' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    // Changed: Added explicit typing for sort callback parameters
+    return response.objects.sort((a: Feature, b: Feature) => {
       const orderA = a.metadata?.order || 0;
       const orderB = b.metadata?.order || 0;
       return orderA - orderB;
-    });
+    }) as Feature[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
@@ -35,18 +36,19 @@ export async function getFeatures() {
 }
 
 // Fetch all pricing plans
-export async function getPricingPlans() {
+export async function getPricingPlans(): Promise<PricingPlan[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'pricing-plans' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    // Changed: Added explicit typing for sort callback parameters
+    return response.objects.sort((a: PricingPlan, b: PricingPlan) => {
       const orderA = a.metadata?.order || 0;
       const orderB = b.metadata?.order || 0;
       return orderA - orderB;
-    });
+    }) as PricingPlan[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
@@ -56,18 +58,19 @@ export async function getPricingPlans() {
 }
 
 // Fetch all testimonials
-export async function getTestimonials() {
+export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'testimonials' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects.sort((a, b) => {
+    // Changed: Added explicit typing for sort callback parameters
+    return response.objects.sort((a: Testimonial, b: Testimonial) => {
       const orderA = a.metadata?.order || 0;
       const orderB = b.metadata?.order || 0;
       return orderA - orderB;
-    });
+    }) as Testimonial[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];
@@ -77,14 +80,14 @@ export async function getTestimonials() {
 }
 
 // Fetch all team members
-export async function getTeamMembers() {
+export async function getTeamMembers(): Promise<TeamMember[]> {
   try {
     const response = await cosmic.objects
       .find({ type: 'team-members' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    return response.objects;
+    return response.objects as TeamMember[];
   } catch (error) {
     if (hasStatus(error) && error.status === 404) {
       return [];

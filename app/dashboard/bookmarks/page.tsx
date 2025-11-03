@@ -8,6 +8,7 @@ import { ArrowLeft, BookMarked } from 'lucide-react'
 export default async function BookmarksPage() {
   const session = await getServerSession(authOptions)
 
+  // Changed: Added explicit check for session.user.id
   if (!session?.user?.id) {
     redirect('/login')
   }

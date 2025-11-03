@@ -1,5 +1,6 @@
 import { getFeatures } from '@/lib/cosmic'
 import type { Metadata } from 'next'
+import { Feature } from '@/types'
 
 export const metadata: Metadata = {
   title: 'Features - Cosmic CMS',
@@ -24,7 +25,8 @@ export default async function FeaturesPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
+          {/* Changed: Added explicit typing for feature and index parameters */}
+          {features.map((feature: Feature, index: number) => (
             <div
               key={feature.id}
               className="bg-white rounded-2xl p-8 shadow-lg card-hover animate-slide-up"

@@ -1,5 +1,6 @@
 import { getTeamMembers } from '@/lib/cosmic'
 import type { Metadata } from 'next'
+import { TeamMember } from '@/types'
 
 export const metadata: Metadata = {
   title: 'About Us - Cosmic CMS',
@@ -24,7 +25,8 @@ export default async function AboutPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member, index) => (
+          {/* Changed: Added explicit typing for member and index parameters */}
+          {team.map((member: TeamMember, index: number) => (
             <div
               key={member.id}
               className="bg-white rounded-2xl p-8 shadow-lg card-hover text-center animate-slide-up"

@@ -144,3 +144,28 @@ export function isUser(obj: CosmicObject): obj is User {
 export function isBlogPost(obj: CosmicObject): obj is BlogPost {
   return obj.type === 'posts';
 }
+
+// NextAuth type extensions
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+  }
+
+  interface User {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id?: string;
+  }
+}

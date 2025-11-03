@@ -39,6 +39,14 @@ export async function POST(request: Request) {
       verification_token: verificationToken,
     })
 
+    // Changed: Added null check for user object
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Failed to create user' },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json(
       { 
         message: 'User created successfully',
@@ -52,8 +60,9 @@ export async function POST(request: Request) {
     )
   } catch (error) {
     if (error instanceof z.ZodError) {
+      // Changed: Added optional chaining for error array access
       return NextResponse.json(
-        { error: error.errors[0].message },
+        { error: error.errors[0]?.message || 'Validation error' },
         { status: 400 }
       )
     }
