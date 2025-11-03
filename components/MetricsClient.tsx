@@ -43,7 +43,8 @@ export default function MetricsClient({ initialData }: Props) {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
 
   const handleShare = (platform: string) => {
-    const text = `Check out Cosmic CMS metrics! ${initialData.totalFeatures} features, ${monthlyData[monthlyData.length - 1].users} active users.`
+    const lastMonthData = monthlyData[monthlyData.length - 1]
+    const text = `Check out Cosmic CMS metrics! ${initialData.totalFeatures} features, ${lastMonthData?.users ?? 0} active users.`
     
     let url = ''
     switch (platform) {
@@ -92,7 +93,7 @@ export default function MetricsClient({ initialData }: Props) {
               <span className="text-gray-600 font-medium">Active Users</span>
               <span className="text-3xl">👥</span>
             </div>
-            <p className="text-4xl font-bold gradient-text">{monthlyData[monthlyData.length - 1].users}</p>
+            <p className="text-4xl font-bold gradient-text">{monthlyData[monthlyData.length - 1]?.users ?? 0}</p>
             <p className="text-sm text-gray-500 mt-2">This month</p>
           </div>
 
@@ -101,7 +102,7 @@ export default function MetricsClient({ initialData }: Props) {
               <span className="text-gray-600 font-medium">Content Published</span>
               <span className="text-3xl">📝</span>
             </div>
-            <p className="text-4xl font-bold gradient-text">{monthlyData[monthlyData.length - 1].posts}</p>
+            <p className="text-4xl font-bold gradient-text">{monthlyData[monthlyData.length - 1]?.posts ?? 0}</p>
             <p className="text-sm text-gray-500 mt-2">Posts this month</p>
           </div>
 

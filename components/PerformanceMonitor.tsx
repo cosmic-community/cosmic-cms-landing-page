@@ -13,7 +13,7 @@ export default function PerformanceMonitor() {
           const lastEntry = entries[entries.length - 1]
           
           // Track LCP
-          if (window.gtag) {
+          if (lastEntry && window.gtag) {
             window.gtag('event', 'web_vitals', {
               event_category: 'Web Vitals',
               event_label: 'LCP',
