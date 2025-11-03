@@ -92,3 +92,60 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     throw new Error('Failed to fetch team members');
   }
 }
+
+// Create a contact submission
+export async function createContactSubmission(data: {
+  name: string;
+  email: string;
+  company?: string;
+  subject: string;
+  message: string;
+}) {
+  try {
+    const response = await cosmic.objects.insertOne({
+      title: `Contact from ${data.name}`,
+      type: 'contact-submissions',
+      metadata: {
+        name: data.name,
+        email: data.email,
+        company: data.company || '',
+        subject: data.subject,
+        message: data.message,
+        status: 'New',
+        submission_date: new Date().toISOString().split('T')[0]
+      }
+    });
+    
+    return response.object;
+  } catch (error) {
+    console.error('Failed to create contact submission:', error);
+    throw new Error('Failed to submit contact form');
+  }
+}
+
+// Create a chat message
+export async function createChatMessage(data: {
+  name: string;
+  email: string;
+  message: string;
+  message_type: string;
+}) {
+  try {
+    const response = await cosmic.objects.insertOne({
+      title: `Chat from ${data.name}`,
+      type: 'chat-messages',
+      metadata: {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        message_type: data.message_type,
+        timestamp: new Date().toISOString().split('T')[0]
+      }
+    });
+    
+    return response.object;
+  } catch (error) {
+    console.error('Failed to create chat message:', error);
+    throw new Error('Failed to submit chat message');
+  }
+}

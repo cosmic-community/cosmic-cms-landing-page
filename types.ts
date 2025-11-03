@@ -69,6 +69,50 @@ export interface TeamMember extends CosmicObject {
   };
 }
 
+// Contact Submission object type
+export interface ContactSubmission extends CosmicObject {
+  type: 'contact-submissions';
+  metadata: {
+    name: string;
+    email: string;
+    company?: string;
+    subject: string;
+    message: string;
+    status: string;
+    submission_date: string;
+  };
+}
+
+// Chat Message object type
+export interface ChatMessage extends CosmicObject {
+  type: 'chat-messages';
+  metadata: {
+    name: string;
+    email: string;
+    message: string;
+    message_type: string;
+    timestamp: string;
+  };
+}
+
+// Contact form data interface
+export interface ContactFormData {
+  name: string;
+  email: string;
+  company?: string;
+  subject: string;
+  message: string;
+  honeypot?: string;
+}
+
+// Chat form data interface
+export interface ChatFormData {
+  name: string;
+  email: string;
+  message: string;
+  honeypot?: string;
+}
+
 // API response type
 export interface CosmicResponse<T> {
   objects: T[];
@@ -95,4 +139,14 @@ export function isTestimonial(obj: CosmicObject): obj is Testimonial {
 // Type guard for team members
 export function isTeamMember(obj: CosmicObject): obj is TeamMember {
   return obj.type === 'team-members';
+}
+
+// Type guard for contact submissions
+export function isContactSubmission(obj: CosmicObject): obj is ContactSubmission {
+  return obj.type === 'contact-submissions';
+}
+
+// Type guard for chat messages
+export function isChatMessage(obj: CosmicObject): obj is ChatMessage {
+  return obj.type === 'chat-messages';
 }

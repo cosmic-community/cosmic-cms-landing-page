@@ -51,13 +51,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://www.cosmicjs.com" className="text-gray-400 hover:text-white transition-colors">
-                  Blog
-                </a>
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                  Contact
+                </Link>
               </li>
               <li>
                 <a href="https://www.cosmicjs.com" className="text-gray-400 hover:text-white transition-colors">
-                  Contact
+                  Blog
                 </a>
               </li>
             </ul>
