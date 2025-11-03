@@ -1,6 +1,6 @@
 export default function SupportResources() {
   return (
-    <div className="space-y-6 animate-slide-in">
+    <div className="space-y-6">
       {/* Quick Links */}
       <div className="bg-white rounded-2xl shadow-xl p-6">
         <h3 className="text-xl font-bold mb-4 flex items-center">

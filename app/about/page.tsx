@@ -15,7 +15,7 @@ export default async function AboutPage() {
   return (
     <div className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">
             Meet Our Team
           </h1>
@@ -25,11 +25,10 @@ export default async function AboutPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member: TeamMember, index: number) => (
+          {team.map((member: TeamMember) => (
             <div
               key={member.id}
-              className="bg-white rounded-2xl p-8 shadow-lg card-hover text-center animate-slide-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="bg-white rounded-2xl p-8 shadow-lg card-hover text-center"
             >
               {member.metadata?.photo && (
                 <img

@@ -16,7 +16,7 @@ export default function Pricing({ plans, preview = false }: PricingProps) {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Simple, Transparent Pricing
           </h2>
@@ -26,16 +26,15 @@ export default function Pricing({ plans, preview = false }: PricingProps) {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {displayPlans.map((plan, index) => {
+          {displayPlans.map((plan) => {
             const isPopular = plan.metadata?.is_popular
 
             return (
               <div
                 key={plan.id}
-                className={`relative bg-white rounded-2xl p-8 shadow-lg card-hover animate-slide-up ${
+                className={`relative bg-white rounded-2xl p-8 shadow-lg card-hover ${
                   isPopular ? 'ring-2 ring-primary scale-105' : ''
                 }`}
-                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {isPopular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
