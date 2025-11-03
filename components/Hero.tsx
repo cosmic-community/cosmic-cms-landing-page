@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-purple-100 via-blue-50 to-pink-50 opacity-50"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center animate-fade-in">
+        <div className="text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Build Content-Driven Apps
             <br />

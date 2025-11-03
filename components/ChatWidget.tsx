@@ -185,7 +185,7 @@ export default function ChatWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col animate-slide-up">
+        <div className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-t-2xl">
             <div className="flex items-center justify-between">
